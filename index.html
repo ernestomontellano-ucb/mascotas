@@ -28,16 +28,65 @@
             cursor:pointer;
             border-radius:6px;
         }
+        #contenedor-mascotas{
+            padding:100px;
+        }
         .card-mascota{
             border:1px solid #ccc;
-            padding:16px;
+            padding:100px 16px 16px 16px;
             margin:10px;
             border-radius:8px;
-            width: 200px;
+            min-width: 300px;
             display: inline-block;
             text-align: center;
             box-shadow:2px 2px 5px rgba(0,0,0,.1);
             background-color: #fff;
+            position: relative;
+        }
+        .contenedor_img {
+            position:absolute;
+            top:-100px;
+            left:50%;
+            transform:translateX(-50%);
+            width: 300px;
+            height: 200px;
+            padding:0;
+            border: 0;
+            box-sizing: content-box;
+            flex-shrink: 0;
+
+            background-color: transparent;
+            background-repeat: no-repeat;
+            background-position: 0 0;
+            background-size: 2400px 200px;
+
+            animation: animarAseo 1.2s steps(8) infinite;
+
+            cursor: pointer;
+            user-select: none;
+            touch-action: none;
+        }
+
+        /* Caminata: 21 cuadros de 300 × 200 px, un ciclo cada 1,75 s. */
+        .contenedor_img.caminando {
+            background-size: 6300px 200px;
+            animation: animarCaminata 1.75s steps(21) infinite;
+        }
+
+        /* Durante el descanso no avanza la animación: permanece el cuadro inicial. */
+        .contenedor_img.pausa-aseo {
+            animation: none;
+            background-position: 0 0;
+        }
+
+        @keyframes animarAseo {
+            from { background-position: 0 0; }
+            to   { background-position: -2400px 0; }
+        }
+
+        @keyframes animarCaminata {
+            from { background-position: 0 0; }
+            to   { background-position: -6300px 0; }
         }
         .contenedor-acciones{
             position:relative;
@@ -74,15 +123,15 @@
     
 </head>
 <body>
-   
+
+
+    <section id="contenedor-mascotas"></section>
     <article class="card">
         <h2>Lorem, ipsum dolor.</h2>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur modi nisi reprehenderit.</p>
         <p id="detalle" class="oculto">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit earum facere ad consequuntur mollitia veniam velit libero eum tenetur esse!</p>
         <button id="boton">Mostrar más</button>
     </article>
-    <section id="contenedor-mascotas"></section>
-
 
 </body>
 </html>
